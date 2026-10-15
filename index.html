@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تم تهجيرك</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at center, #260000 0%, #090000 38%, #000 75%);
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    /* تأثير الظلام حول الشاشة */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 20%,
+        rgba(0,0,0,.45) 60%,
+        rgba(0,0,0,.95) 100%
+      );
+    }
+
+    .screen {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: appear 2s ease forwards;
+    }
+
+    .warning {
+      font-size: clamp(45px, 12vw, 110px);
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #ff2020;
+      text-shadow:
+        0 0 10px #ff0000,
+        0 0 25px #ff0000,
+        0 0 55px rgba(255,0,0,.8);
+      animation:
+        flicker 2.5s infinite,
+        pulse 2s infinite;
+    }
+
+    .line {
+      width: 180px;
+      height: 2px;
+      margin: 28px auto 0;
+      background: #ff2020;
+      box-shadow: 0 0 15px red;
+      animation: linePulse 1.5s infinite;
+    }
+
+    /* تشويش خفيف */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: "تم تهجيرك";
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      opacity: .25;
+    }
+
+    .glitch::before {
+      color: #00ffff;
+      transform: translate(-2px, 1px);
+      animation: glitch1 2s infinite;
+    }
+
+    .glitch::after {
+      color: #ff00ff;
+      transform: translate(2px, -1px);
+      animation: glitch2 1.7s infinite;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: scale(.75);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.025);
+      }
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 63%, 65%, 100% {
+        opacity: 1;
+      }
+      20%, 64% {
+        opacity: .55;
+      }
+    }
+
+    @keyframes linePulse {
+      0%, 100% {
+        opacity: .4;
+        width: 120px;
+      }
+      50% {
+        opacity: 1;
+        width: 220px;
+      }
+    }
+
+    @keyframes glitch1 {
+      0%, 90%, 100% {
+        clip-path: inset(0 0 100% 0);
+      }
+      92% {
+        clip-path: inset(20% 0 55% 0);
+      }
+      95% {
+        clip-path: inset(65% 0 15% 0);
+      }
+    }
+
+    @keyframes glitch2 {
+      0%, 88%, 100% {
+        clip-path: inset(100% 0 0 0);
+      }
+      90% {
+        clip-path: inset(55% 0 20% 0);
+      }
+      94% {
+        clip-path: inset(10% 0 70% 0);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .warning {
+        font-size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="screen">
+    <div class="glitch warning">تم تهجيرك</div>
+    <div class="line"></div>
+  </main>
+
+</body>
+</html>
